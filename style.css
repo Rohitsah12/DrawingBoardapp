@@ -1,25 +1,75 @@
-body{
-    display: flex;
-    flex-direction:column;
-    justify-content: center;
-    height: 100vh;
-    align-items: center;
+body {
     margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #fdfcfb, #e2d1c3);
+    height: 100vh;
 }
-#drawingCanvas{
-    border: 1px solid black;
+
+#appContainer {
+    width: 700px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    border-radius: 15px;
+    overflow: hidden;
+}
+
+#toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: linear-gradient(90deg, #7f7fd5, #86a8e7, #91eae4);
+    width: 100%;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.toolItem {
+    background-color: #fff;
+    border: none;
+    border-radius: 50%;
+    padding: 10px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.toolItem:hover {
+    transform: scale(1.1);
+    background-color: #f0f0f0;
+}
+
+.toolItem:active {
+    transform: scale(0.95);
+}
+
+.toolLabel {
+    font-size: 14px;
+    color: #fff;
+    margin: 0 10px;
+}
+
+#canvasContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-top: 2px solid #ddd;
+    width: 100%;
+}
+
+#drawingCanvas {
+    border: 2px solid #ddd;
     border-radius: 10px;
+    background: #fff;
     width: 600px;
     height: 400px;
-}
-#toolbar{
-    margin-bottom: 10px;
-}
-
-.toolItem{
-    margin-right: 10px;
-}
-
-.active{
-    background-color: #ddd;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
 }
