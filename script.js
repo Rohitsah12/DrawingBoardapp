@@ -16,7 +16,7 @@ function setupCanvas() {
     ctx.scale(dpi, dpi);
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', () => {
     setupCanvas();
 
     document.getElementById('pencilButton').addEventListener('click', () => setActiveTool('pencil'));
@@ -29,11 +29,12 @@ document.addEventListener('DOMContentLoaded', (event) => {
         setActiveTool('pencil');
     });
     document.getElementById('brushSize').addEventListener('input', (e) => {
-        brushSize = e.target.value;
+        brushSize = parseInt(e.target.value, 10);
     });
 
     canvas.addEventListener('mousedown', startDrawing);
     canvas.addEventListener('mouseup', stopDrawing);
+    canvas.addEventListener('mouseleave', stopDrawing);
     canvas.addEventListener('mousemove', draw);
 
     setActiveTool('pencil');
@@ -42,7 +43,8 @@ document.addEventListener('DOMContentLoaded', (event) => {
 function draw(e) {
     if (!drawing) return;
     const mousePos = getMousePos(e);
-    paths[paths.length - 1].points.push(mousePos);
+    const currentPath = paths[paths.length - 1];
+    currentPath.points.push(mousePos);
     redrawCanvas();
 }
 
@@ -61,39 +63,39 @@ function redoLastAction() {
 }
 
 function clearCanvas() {
-    ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     paths = [];
     redoStack = [];
 }
 
 function redrawCanvas() {
-    ctx.clearRect(0, 0, canvas.width / window.devicePixelRatio, canvas.height / window.devicePixelRatio);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     paths.forEach(drawPath);
 }
 
 function drawPath(path) {
+    if (path.points.length === 0) return;
+
     ctx.beginPath();
     ctx.moveTo(path.points[0].x, path.points[0].y);
-
-    for (let i = 1; i < path.points.length; i++) {
-        ctx.lineTo(path.points[i].x, path.points[i].y);
-    }
-
+    path.points.forEach(point => {
+        ctx.lineTo(point.x, point.y);
+    });
     ctx.strokeStyle = path.color;
     ctx.lineWidth = path.width;
+    ctx.lineJoin = 'round';
+    ctx.lineCap = 'round';
     ctx.stroke();
 }
 
 function startDrawing(e) {
     drawing = true;
     const mousePos = getMousePos(e);
-
     paths.push({
-        color: currentTool === 'eraser' ? 'white' : currentColor,
+        color: currentTool === 'eraser' ? '#FFFFFF' : currentColor,
         points: [mousePos],
-        width: brushSize
+        width: brushSize,
     });
-
     redoStack = [];
 }
 
@@ -101,10 +103,11 @@ function stopDrawing() {
     drawing = false;
 }
 
-function getMousePos(evt) {
+function getMousePos(e) {
     const rect = canvas.getBoundingClientRect();
-    const x = (evt.clientX - rect.left) * (canvas.width / rect.width);
-    const y = (evt.clientY - rect.top) * (canvas.height / rect.height);
+    const dpi = window.devicePixelRatio;
+    const x = (e.clientX - rect.left) * (canvas.width / (rect.width * dpi));
+    const y = (e.clientY - rect.top) * (canvas.height / (rect.height * dpi));
     return { x, y };
 }
 
