@@ -1,9 +1,9 @@
-# Drawing Board App
+# Drawing Board 
 
-[Drawing Board App](https://drawing-boardapp.vercel.app/)
+[Drawing Board](https://drawing-boardapp.vercel.app/)
 
 ## Overview
-The Drawing Board App is an interactive and intuitive online drawing application that allows users to unleash their creativity. With a modern design and user-friendly interface, this app is perfect for anyone who enjoys digital art or needs a tool for quick sketches.
+The Drawing Board is an interactive and intuitive online drawing application that allows users to unleash their creativity. With a modern design and user-friendly interface, this app is perfect for anyone who enjoys digital art or needs a tool for quick sketches.
 
 ## Features
 - **Freehand Drawing**: Use the pencil tool to create smooth, freehand sketches.
@@ -16,7 +16,7 @@ The Drawing Board App is an interactive and intuitive online drawing application
 - **Modern UI**: Enjoy a polished interface with rounded buttons, gradients, and smooth animations.
 
 ## How to Use
-1. Open the application in your browser: [Drawing Board App](https://drawing-boardapp.vercel.app/).
+1. Open the application in your browser: [Drawing Board](https://drawing-boardapp.vercel.app/).
 2. Use the toolbar at the top to select tools and customize your drawing experience:
     - Click the **Pencil** button to start drawing.
     - Select the **Eraser** to remove parts of your drawing.
@@ -38,7 +38,7 @@ The Drawing Board App is an interactive and intuitive online drawing application
 - `script.js`: The JavaScript logic for drawing functionality.
 
 ## Live Demo
-Try the live version here: [Drawing Board App](https://drawing-boardapp.vercel.app/)
+Try the live version here: [Drawing Board](https://drawing-boardapp.vercel.app/)
 
 ## Future Enhancements
 - **Save/Export Feature**: Allow users to save their drawings as image files.
